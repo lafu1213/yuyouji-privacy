@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>語遊記 宣傳影片</title>
+<link rel="stylesheet" href="fonts/noto-sans-tc/400.css">
+<link rel="stylesheet" href="fonts/noto-sans-tc/700.css">
+<link rel="stylesheet" href="fonts/noto-sans-tc/900.css">
+<link rel="stylesheet" href="fonts/noto-serif-tc/700.css">
+<link rel="stylesheet" href="fonts/noto-serif-tc/900.css">
+<style>
+  :root {
+    --cream: #FEFAE0;
+    --paper: #FFF8EE;
+    --ink: #2C2416;
+    --green-d: #3A4E2A;
+    --green: #4A6741;
+    --green-l: #7A9E6C;
+    --orange: #C96E28;
+    --seal: #B8452B;
+    --line: #E4D9C0;
+    --muted: #7A6E5A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream); }
+  body { font-family: "Noto Sans TC", sans-serif; color: var(--ink); }
+  .serif { font-family: "Noto Serif TC", serif; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream); }
+  .abs { position: absolute; }
+  .scene { position: absolute; inset: 0; opacity: 0; }
+  .center-x { left: 0; right: 0; text-align: center; }
+
+  /* background decoration */
+  .blob { position: absolute; border-radius: 50%; }
+  .hills { position: absolute; left: -40px; right: -40px; bottom: -10px; height: 360px; }
+
+  /* S1 */
+  .hook { font-weight: 900; font-size: 104px; line-height: 1.35; color: var(--green-d); }
+  .hook em { font-style: normal; color: var(--orange); }
+  .tile {
+    position: absolute; padding: 18px 30px; border-radius: 22px;
+    background: #fff; border: 3px solid var(--line);
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 58px; color: var(--green);
+    box-shadow: 0 10px 0 rgba(58,78,42,.08);
+    white-space: nowrap;
+  }
+
+  /* S2 / S8 brand */
+  .seal {
+    width: 300px; height: 300px; border-radius: 42px; background: var(--seal);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 18px 0 rgba(120,40,20,.18);
+  }
+  .seal span { font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 180px; color: #FFF3E0; line-height: 1; }
+  .brand { font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 210px; color: var(--green-d); letter-spacing: 24px; }
+  .tagline { font-weight: 700; font-size: 64px; color: var(--green); letter-spacing: 6px; }
+
+  /* captions over the phone */
+  .cap { position: absolute; top: 150px; left: 0; right: 0; text-align: center; opacity: 0; }
+  .cap .tag {
+    display: inline-block; padding: 10px 34px; border-radius: 999px;
+    background: var(--orange); color: #fff; font-weight: 700; font-size: 44px; letter-spacing: 4px;
+  }
+  .cap h2 { margin-top: 26px; font-weight: 900; font-size: 92px; color: var(--green-d); line-height: 1.25; }
+  .cap p { margin-top: 14px; font-weight: 700; font-size: 46px; color: var(--muted); }
+
+  /* phone */
+  #phone {
+    position: absolute; left: 190px; top: 560px; width: 700px; height: 1300px;
+    border-radius: 96px; background: #22301A; padding: 24px;
+    box-shadow: 0 40px 80px rgba(58,78,42,.28);
+  }
+  #screen { position: relative; width: 100%; height: 100%; border-radius: 74px; background: var(--cream); overflow: hidden; }
+  .notch { position: absolute; top: 22px; left: 50%; width: 200px; height: 52px; margin-left: -100px; border-radius: 30px; background: #22301A; z-index: 5; }
+  .scr { position: absolute; inset: 0; padding: 110px 44px 40px; opacity: 0; }
+  .scr-title { font-weight: 900; font-size: 50px; color: var(--green-d); margin-bottom: 26px; }
+  .chips { display: flex; gap: 16px; margin-bottom: 26px; position: relative; }
+  .chip {
+    flex: 1; text-align: center; padding: 18px 0; border-radius: 22px; font-weight: 700; font-size: 38px;
+    background: #fff; border: 3px solid var(--line); color: var(--green);
+    position: relative; z-index: 1;
+  }
+  .chip.on { color: #fff; border-color: transparent; background: transparent; }
+  #chipHi { position: absolute; top: 0; height: 100%; border-radius: 22px; background: var(--green-l); z-index: 0; }
+  .grades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 30px; }
+  .grade {
+    text-align: center; padding: 16px 0; border-radius: 18px; font-weight: 700; font-size: 32px;
+    background: var(--paper); border: 3px solid var(--line); color: var(--muted);
+  }
+  .grade.on { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .row {
+    display: flex; align-items: center; gap: 22px; padding: 22px 26px; margin-bottom: 16px;
+    background: #fff; border-radius: 24px; border: 3px solid var(--line);
+  }
+  .row .w { font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 44px; color: var(--green-d); }
+  .row .m { font-size: 28px; color: var(--muted); }
+  .row .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--green-l); flex: none; }
+
+  .card {
+    background: #fff; border-radius: 34px; border: 3px solid var(--line); padding: 36px 30px; text-align: center;
+  }
+  .card .zy { font-size: 30px; color: var(--muted); letter-spacing: 4px; }
+  .card .big { font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 104px; color: var(--green-d); letter-spacing: 4px; line-height: 1.3; white-space: nowrap; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    margin: 28px auto 0; padding: 22px 0; border-radius: 999px; background: var(--orange); color: #fff;
+    font-weight: 900; font-size: 40px;
+  }
+  .story {
+    margin-top: 28px; padding: 30px 32px; background: var(--paper); border-radius: 28px; border: 3px dashed var(--green-l);
+    font-size: 36px; line-height: 1.7; color: var(--ink); min-height: 420px; text-align: left;
+  }
+  .caret { display: inline-block; width: 4px; height: 38px; background: var(--orange); vertical-align: -6px; margin-left: 2px; }
+
+  .q { font-weight: 900; font-size: 44px; line-height: 1.45; color: var(--green-d); margin: 10px 0 30px; }
+  .q b { color: var(--orange); }
+  .opt {
+    display: flex; align-items: center; gap: 22px; padding: 26px 26px; margin-bottom: 18px;
+    background: #fff; border-radius: 26px; border: 4px solid var(--line); font-weight: 700; font-size: 36px;
+  }
+  .opt .k { width: 56px; height: 56px; border-radius: 50%; background: var(--paper); border: 3px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--muted); flex: none; }
+  .bar { height: 22px; border-radius: 11px; background: var(--line); overflow: hidden; margin-bottom: 20px; }
+  .bar i { display: block; height: 100%; background: var(--green-l); border-radius: 11px; }
+  .toast {
+    position: absolute; left: 44px; right: 44px; bottom: 60px; padding: 28px 30px; border-radius: 28px;
+    background: var(--green-d); color: #fff; font-weight: 700; font-size: 34px; display: flex; align-items: center; gap: 20px;
+  }
+  .toast .n { margin-left: auto; background: var(--orange); border-radius: 999px; padding: 6px 22px; }
+
+  .waves { display: flex; align-items: center; justify-content: center; gap: 12px; height: 120px; margin-top: 18px; }
+  .waves i { display: block; width: 16px; border-radius: 8px; background: var(--orange); }
+  .streak { margin-top: 34px; background: #fff; border-radius: 34px; border: 3px solid var(--line); padding: 34px 30px; text-align: center; }
+  .streak .num { font-weight: 900; font-size: 150px; color: var(--orange); line-height: 1; }
+  .streak .lbl { font-weight: 700; font-size: 38px; color: var(--green-d); margin-top: 8px; }
+  .days { display: flex; justify-content: center; gap: 14px; margin-top: 26px; }
+  .days div { width: 60px; height: 60px; border-radius: 50%; border: 4px solid var(--line); background: var(--paper); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; color: var(--muted); }
+  .days div.on { background: var(--green-l); border-color: var(--green-l); color: #fff; }
+
+  #tap { position: absolute; width: 90px; height: 90px; border-radius: 50%; background: rgba(201,110,40,.35); border: 5px solid rgba(201,110,40,.8); opacity: 0; z-index: 10; }
+
+  /* S7 */
+  .badge {
+    position: absolute; left: 110px; right: 110px; height: 250px; border-radius: 48px; background: #fff; border: 4px solid var(--line);
+    display: flex; align-items: center; gap: 44px; padding: 0 56px; box-shadow: 0 14px 0 rgba(58,78,42,.08);
+  }
+  .badge .ic { width: 150px; height: 150px; border-radius: 40px; flex: none; display: flex; align-items: center; justify-content: center; }
+  .badge h3 { font-weight: 900; font-size: 68px; color: var(--green-d); }
+  .badge p { font-weight: 700; font-size: 40px; color: var(--muted); margin-top: 4px; }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 22px; padding: 30px 60px; border-radius: 999px;
+    background: var(--green-d); color: #fff; font-weight: 900; font-size: 56px;
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ===== persistent background ===== -->
+  <div id="bg">
+    <div class="blob" id="b1" style="width:520px;height:520px;background:#EEF2D6;left:-160px;top:-120px"></div>
+    <div class="blob" id="b2" style="width:380px;height:380px;background:#FBE7CF;right:-120px;top:420px"></div>
+    <div class="blob" id="b3" style="width:300px;height:300px;background:#EEF2D6;left:-90px;top:1250px"></div>
+    <div class="blob" id="b4" style="width:180px;height:180px;background:#FBE7CF;right:120px;top:120px"></div>
+    <svg class="hills" viewBox="0 0 1160 360" preserveAspectRatio="none">
+      <path d="M0 200 Q 180 90 380 180 T 760 170 T 1160 150 L1160 360 L0 360 Z" fill="#E3EBC9"/>
+      <path d="M0 270 Q 240 190 480 260 T 900 240 T 1160 230 L1160 360 L0 360 Z" fill="#CFDDB3"/>
+    </svg>
+  </div>
+
+  <!-- ===== S1 hook ===== -->
+  <section class="scene" id="s1">
+    <div class="tile" id="t1" style="left:90px;top:260px">畫蛇添足</div>
+    <div class="tile" id="t2" style="left:600px;top:380px">守株待兔</div>
+    <div class="tile" id="t3" style="left:140px;top:1380px">亡羊補牢</div>
+    <div class="tile" id="t4" style="left:580px;top:1260px">井底之蛙</div>
+    <div class="tile" id="t5" style="left:620px;top:1540px">狐假虎威</div>
+    <div class="tile" id="t6" style="left:70px;top:560px">對牛彈琴</div>
+    <div class="abs center-x hook" id="h1" style="top:760px">孩子背成語<br><em>總是背了又忘？</em></div>
+    <div class="abs center-x hook" id="h2" style="top:760px;opacity:0">換個方式<br><em>讓成語變好玩！</em></div>
+  </section>
+
+  <!-- ===== S2 brand ===== -->
+  <section class="scene" id="s2">
+    <div class="abs" id="s2seal" style="left:390px;top:470px"><div class="seal"><span>語</span></div></div>
+    <div class="abs center-x brand" id="s2brand" style="top:850px">語遊記</div>
+    <div class="abs center-x tagline" id="s2tag" style="top:1150px">國小成語學習好夥伴</div>
+    <svg class="abs" id="s2line" style="left:240px;top:1110px" width="600" height="12"><rect width="600" height="8" rx="4" fill="#7A9E6C"/></svg>
+  </section>
+
+  <!-- ===== captions for phone scenes ===== -->
+  <div class="cap" id="c3"><span class="tag">緊扣課本</span><h2>三大版本 一到六年級</h2><p>翰林・南一・康軒 上下學期全收錄</p></div>
+  <div class="cap" id="c4"><span class="tag">AI 成語小故事</span><h2>一個成語 一段好故事</h2><p>用故事記住成語，理解更深刻</p></div>
+  <div class="cap" id="c5"><span class="tag">趣味測驗</span><h2>邊玩邊考 越答越有信心</h2><p>答錯也不怕，錯題本幫你複習</p></div>
+  <div class="cap" id="c6"><span class="tag">朗讀・每日打卡</span><h2>聽得懂 說得出 天天進步</h2><p>連續學習天數，養成好習慣</p></div>
+
+  <!-- ===== phone ===== -->
+  <div id="phone">
+    <div id="screen">
+      <div class="notch"></div>
+
+      <!-- screen: lookup -->
+      <div class="scr" id="p3">
+        <div class="scr-title">查詢</div>
+        <div class="chips" id="chips">
+          <div id="chipHi"></div>
+          <div class="chip" data-i="0">翰林</div>
+          <div class="chip" data-i="1">南一</div>
+          <div class="chip" data-i="2">康軒</div>
+        </div>
+        <div class="grades" id="grades">
+          <div class="grade">一年級</div><div class="grade">二年級</div><div class="grade">三年級</div>
+          <div class="grade">四年級</div><div class="grade">五年級</div><div class="grade">六年級</div>
+        </div>
+        <div id="rows">
+          <div class="row"><span class="dot"></span><div><div class="w">一鳴驚人</div><div class="m">平時沒沒無聞，一做就有驚人表現</div></div></div>
+          <div class="row"><span class="dot"></span><div><div class="w">半途而廢</div><div class="m">事情做到一半就放棄</div></div></div>
+          <div class="row"><span class="dot"></span><div><div class="w">專心一意</div><div class="m">心思集中，毫不分心</div></div></div>
+          <div class="row"><span class="dot"></span><div><div class="w">亡羊補牢</div><div class="m">出了差錯後及時補救</div></div></div>
+        </div>
+      </div>
+
+      <!-- screen: AI story -->
+      <div class="scr" id="p4">
+        <div class="card">
+          <div class="zy">ㄕㄡˇ ㄓㄨ ㄉㄞˋ ㄊㄨˋ</div>
+          <div class="big">守株待兔</div>
+          <div class="btn" id="aiBtn" style="width:440px">
+            <svg width="44" height="44" viewBox="0 0 24 24"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7z" fill="#fff"/><circle cx="19" cy="18" r="2" fill="#fff"/></svg>
+            生成小故事
+          </div>
+        </div>
+        <div class="story" id="story"></div>
+      </div>
+
+      <!-- screen: quiz -->
+      <div class="scr" id="p5">
+        <div class="scr-title" style="display:flex;justify-content:space-between"><span>成語測驗</span><span style="color:var(--orange)" id="score">80 分</span></div>
+        <div class="bar"><i id="qbar" style="width:70%"></i></div>
+        <div class="q">「<b>亡羊補牢</b>」的意思<br>最接近下列哪一個？</div>
+        <div class="opt" id="oA"><span class="k">A</span>事情做到一半就放棄</div>
+        <div class="opt" id="oB"><span class="k">B</span>出了差錯後及時補救</div>
+        <div class="opt" id="oC"><span class="k">C</span>形容非常害怕的樣子</div>
+        <div class="opt" id="oD"><span class="k">D</span>比喻見識非常狹小</div>
+        <div class="toast" id="toast">
+          <svg width="46" height="46" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3" fill="none" stroke="#fff" stroke-width="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+          錯題本
+          <span class="n">3 題待複習</span>
+        </div>
+      </div>
+
+      <!-- screen: read aloud + streak -->
+      <div class="scr" id="p6">
+        <div class="card">
+          <div class="zy">ㄧ ㄇㄧㄥˊ ㄐㄧㄥ ㄖㄣˊ</div>
+          <div class="big">一鳴驚人</div>
+          <div class="waves" id="waves">
+            <svg width="80" height="80" viewBox="0 0 24 24" style="margin-right:14px"><path d="M4 9h4l5-4v14l-5-4H4z" fill="#C96E28"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="#C96E28" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+        <div class="streak">
+          <div class="num" id="snum">1</div>
+          <div class="lbl">連續學習天數</div>
+          <div class="days" id="days"><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div id="tap"></div>
+  </div>
+
+  <!-- ===== S7 trust ===== -->
+  <section class="scene" id="s7">
+    <div class="abs center-x" style="top:230px"><div class="hook" style="font-size:92px">給孩子<em>安心</em>的學習空間</div></div>
+    <div class="badge" id="g1" style="top:520px">
+      <div class="ic" style="background:#EEF2D6"><svg width="92" height="92" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="#4A6741" stroke-width="2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="#4A6741" stroke-width="2" stroke-linecap="round"/><path d="M3 3l18 18" stroke="#C96E28" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+      <div><h3>免註冊</h3><p>打開就能直接學</p></div>
+    </div>
+    <div class="badge" id="g2" style="top:810px">
+      <div class="ic" style="background:#FBE7CF"><svg width="92" height="92" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="#C96E28" stroke-width="2"/><text x="12" y="15.5" text-anchor="middle" font-size="7" font-weight="900" fill="#C96E28" font-family="sans-serif">AD</text><path d="M3 3l18 18" stroke="#4A6741" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+      <div><h3>無廣告</h3><p>專心學習不被打擾</p></div>
+    </div>
+    <div class="badge" id="g3" style="top:1100px">
+      <div class="ic" style="background:#EEF2D6"><svg width="92" height="92" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z" fill="none" stroke="#4A6741" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="#C96E28" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h3>資料只存本機</h3><p>不上傳、不追蹤</p></div>
+    </div>
+    <div class="abs center-x tagline" id="g4" style="top:1420px;font-size:52px">全家共用・每位小朋友各自記錄</div>
+  </section>
+
+  <!-- ===== S8 end card ===== -->
+  <section class="scene" id="s8">
+    <div class="abs" id="e_seal" style="left:390px;top:430px"><div class="seal"><span>語</span></div></div>
+    <div class="abs center-x brand" id="e_brand" style="top:800px">語遊記</div>
+    <div class="abs center-x tagline" id="e_tag" style="top:1090px">陪孩子邊玩邊學成語</div>
+    <div class="abs center-x" id="e_cta" style="top:1260px">
+      <div class="pill">
+        <svg width="60" height="60" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M16 16l5 5" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>
+        App Store 搜尋「語遊記」
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, p) => a + (b - a) * p;
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const easeOut = (p) => 1 - Math.pow(1 - p, 3);
+const easeInOut = (p) => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const backOut = (p) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); };
+// visibility window with fade in/out; returns opacity
+const win = (t, a, b, fi = .4, fo = .4) => Math.min(prog(t, a, a + fi), 1 - prog(t, b - fo, b));
+const set = (el, o, tf) => { el.style.opacity = o; if (tf !== undefined) el.style.transform = tf; };
+
+const DURATION = 32;
+// element position relative to #phone (ignores transforms, so it is stable while the phone animates)
+const posIn = (el) => { let x = 0, y = 0; const phone = $('#phone'); while (el && el !== phone) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return { x, y }; };
+const STORY = "小農夫阿福看見一隻兔子撞上樹樁，白白撿到一頓晚餐。從此他丟下鋤頭，天天守在樹旁等兔子。結果兔子再也沒出現，田裡的菜卻全都枯了。——做事要靠努力，不能只想碰運氣喔！";
+
+function render(t) {
+  // background drift
+  $('#b1').style.transform = `translate(${Math.sin(t * .4) * 30}px, ${Math.cos(t * .3) * 24}px)`;
+  $('#b2').style.transform = `translate(${Math.cos(t * .35) * 26}px, ${Math.sin(t * .45) * 30}px)`;
+  $('#b3').style.transform = `translate(${Math.sin(t * .5) * 22}px, ${Math.cos(t * .4) * 18}px)`;
+  $('#b4').style.transform = `scale(${1 + Math.sin(t * .8) * .06})`;
+  $('.hills').style.transform = `translateY(${(1 - easeOut(prog(t, 0, 1))) * 200}px)`;
+
+  // ---------- S1 hook (0 – 4.2)
+  const s1 = win(t, 0, 4.2, .01, .5);
+  set($('#s1'), s1);
+  $$('#s1 .tile').forEach((el, i) => {
+    const p = easeOut(prog(t, .1 + i * .12, .7 + i * .12));
+    const fall = easeInOut(prog(t, 2.1, 3.3)); // tiles "forgotten": fall & fade
+    const wob = Math.sin(t * 3 + i) * 5;
+    const y = (1 - p) * -80 + fall * (500 + i * 60);
+    set(el, p * (1 - fall), `translateY(${y}px) rotate(${wob + fall * (i % 2 ? 40 : -40)}deg)`);
+  });
+  const h1p = easeOut(prog(t, .3, .9)), h1o = 1 - prog(t, 2.1, 2.4);
+  set($('#h1'), h1p * h1o, `translateY(${(1 - h1p) * 60}px)`);
+  const h2p = backOut(prog(t, 2.45, 3.0));
+  set($('#h2'), prog(t, 2.45, 2.7), `scale(${lerp(.7, 1, h2p)})`);
+
+  // ---------- S2 brand (4.2 – 8.2)
+  set($('#s2'), win(t, 4.2, 8.2, .2, .5));
+  const sp = prog(t, 4.3, 4.75);
+  set($('#s2seal'), clamp(sp * 3), `scale(${lerp(2.2, 1, easeOut(sp))}) rotate(${lerp(-18, -6, easeOut(sp))}deg)`);
+  const bp = easeOut(prog(t, 4.9, 5.6));
+  set($('#s2brand'), bp, `translateY(${(1 - bp) * 50}px)`);
+  $('#s2line').style.opacity = 1;
+  $('#s2line rect').setAttribute('width', 600 * easeInOut(prog(t, 5.5, 6.2)));
+  const tp = easeOut(prog(t, 5.9, 6.6));
+  set($('#s2tag'), tp, `translateY(${(1 - tp) * 30}px)`);
+
+  // ---------- phone (8.2 – 26.4)
+  const phIn = easeOut(prog(t, 8.2, 9.0)), phOut = easeInOut(prog(t, 25.8, 26.5));
+  set($('#phone'), phIn * (1 - phOut), `translateY(${(1 - phIn) * 700 + phOut * 900}px) rotate(${(1 - phIn) * 6}deg)`);
+
+  const segs = [['#c3', '#p3', 8.2, 12.8], ['#c4', '#p4', 12.8, 17.6], ['#c5', '#p5', 17.6, 22.0], ['#c6', '#p6', 22.0, 26.4]];
+  segs.forEach(([c, p, a, b], i) => {
+    const o = win(t, a, b, .45, .35);
+    const ip = easeOut(prog(t, a, a + .5));
+    set($(c), o, `translateY(${(1 - ip) * 40}px)`);
+    set($(p), win(t, a + (i ? 0 : .3), b, .35, .3));
+  });
+
+  // S3: publisher chips + grade + rows
+  const chipIdx = t < 9.8 ? 0 : t < 10.8 ? 1 : 2;
+  const chipMove = t < 9.8 ? 0 : t < 10.8 ? easeInOut(prog(t, 9.8, 10.1)) : 1 + easeInOut(prog(t, 10.8, 11.1));
+  const chips = $$('#chips .chip');
+  const cw = chips[0].offsetWidth, gap = 16;
+  const hi = $('#chipHi');
+  hi.style.width = cw + 'px';
+  hi.style.left = (chipMove * (cw + gap)) + 'px';
+  chips.forEach((c, i) => c.classList.toggle('on', Math.round(chipMove) === i));
+  const gIdx = Math.floor(clamp((t - 9.2) / .55, 0, 5.99));
+  $$('#grades .grade').forEach((g, i) => g.classList.toggle('on', i === (t < 11.3 ? gIdx : 2)));
+  $$('#rows .row').forEach((r, i) => {
+    const p = easeOut(prog(t, 9.0 + i * .18, 9.5 + i * .18));
+    set(r, p, `translateX(${(1 - p) * 80}px)`);
+  });
+
+  // S4: AI story
+  const press = prog(t, 13.8, 14.1);
+  $('#aiBtn').style.transform = `scale(${1 - Math.sin(press * Math.PI) * .08})`;
+  const n = Math.floor(clamp((t - 14.3) / 2.6) * STORY.length);
+  $('#story').innerHTML = (t < 14.3 ? '' : STORY.slice(0, n)) + (t >= 14.1 && Math.floor(t * 3) % 2 === 0 ? '<span class="caret"></span>' : '');
+
+  // S5: quiz
+  const pick = t >= 19.2;
+  ['#oA', '#oB', '#oC', '#oD'].forEach((s) => { const e = $(s); e.style.borderColor = ''; e.style.background = ''; });
+  const oB = $('#oB');
+  if (pick) {
+    const pp = backOut(prog(t, 19.2, 19.6));
+    oB.style.borderColor = '#7A9E6C'; oB.style.background = '#EEF2D6';
+    oB.style.transform = `scale(${lerp(.95, 1, pp)})`;
+    oB.querySelector('.k').innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#4A6741" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    oB.querySelector('.k').style.background = '#fff';
+  } else {
+    oB.style.transform = ''; oB.querySelector('.k').textContent = 'B'; oB.querySelector('.k').style.background = '';
+  }
+  $('#score').textContent = (pick ? 90 : 80) + ' 分';
+  $('#qbar').style.width = lerp(70, 80, easeOut(prog(t, 19.3, 19.8))) + '%';
+  const tst = backOut(prog(t, 20.2, 20.7));
+  set($('#toast'), prog(t, 20.2, 20.4), `translateY(${(1 - tst) * 160}px)`);
+
+  // tap indicator (S4 button, S5 option B)
+  const tap = $('#tap');
+  let tapO = 0, tapS = 1, tx = 0, ty = 0;
+  const aim = (el, p) => { const o = posIn(el); tx = o.x + el.offsetWidth * .72 - 45; ty = o.y + el.offsetHeight / 2 - 45; tapO = Math.sin(p * Math.PI); tapS = lerp(1.3, .8, p); };
+  if (t > 13.4 && t < 14.4) aim($('#aiBtn'), prog(t, 13.4, 14.4));
+  if (t > 18.8 && t < 19.8) aim($('#oB'), prog(t, 18.8, 19.8));
+  tap.style.left = tx + 'px'; tap.style.top = ty + 'px';
+  set(tap, tapO, `scale(${tapS})`);
+
+  // S6: waves + streak
+  $$('#waves i').forEach((w, i) => {
+    const active = t > 22.4 && t < 24.6;
+    const h = active ? 24 + Math.abs(Math.sin(t * 9 + i * .9)) * 76 : 20;
+    w.style.height = h + 'px';
+  });
+  const day = Math.max(1, Math.min(7, 1 + Math.floor(prog(t, 23.0, 25.0) * 6.99)));
+  $('#snum').textContent = day;
+  $('#snum').style.transform = `scale(${1 + (day === 7 ? Math.sin(prog(t, 25.0, 25.4) * Math.PI) * .18 : 0)})`;
+  $$('#days div').forEach((d, i) => d.classList.toggle('on', i < day));
+
+  // ---------- S7 trust (26.3 – 29.4)
+  set($('#s7'), win(t, 26.3, 29.4, .3, .4));
+  ['#g1', '#g2', '#g3'].forEach((s, i) => {
+    const p = backOut(prog(t, 26.5 + i * .3, 27.0 + i * .3));
+    set($(s), prog(t, 26.5 + i * .3, 26.7 + i * .3), `translateX(${(1 - p) * (i % 2 ? 600 : -600)}px)`);
+  });
+  const g4 = easeOut(prog(t, 27.7, 28.2));
+  set($('#g4'), g4, `translateY(${(1 - g4) * 30}px)`);
+
+  // ---------- S8 end (29.3 – 32)
+  set($('#s8'), win(t, 29.3, DURATION + 1, .3, .1));
+  const ep = prog(t, 29.4, 29.85);
+  set($('#e_seal'), clamp(ep * 3), `scale(${lerp(2.2, 1, easeOut(ep))}) rotate(${lerp(-18, -6, easeOut(ep))}deg)`);
+  const eb = easeOut(prog(t, 29.8, 30.4));
+  set($('#e_brand'), eb, `translateY(${(1 - eb) * 40}px)`);
+  const et = easeOut(prog(t, 30.2, 30.7));
+  set($('#e_tag'), et, `translateY(${(1 - et) * 30}px)`);
+  const ec = backOut(prog(t, 30.6, 31.1));
+  set($('#e_cta'), prog(t, 30.6, 30.8), `scale(${lerp(.6, 1, ec) + Math.sin(Math.max(0, t - 31.1) * 4) * .02})`);
+}
+
+window.DURATION = DURATION;
+window.STORY = STORY;
+window.render = render;
+render(0);
+
+// Preview mode: open promo.html in a browser to watch it loop in real time.
+if (!new URLSearchParams(location.search).has('capture')) {
+  const fit = () => { const s = Math.min(innerWidth / 1080, innerHeight / 1920); document.body.style.transform = `scale(${s})`; document.body.style.transformOrigin = '0 0'; };
+  fit(); addEventListener('resize', fit);
+  let t0 = performance.now();
+  const loop = (now) => { let t = (now - t0) / 1000; if (t > DURATION) { t0 = now; t = 0; } render(t); requestAnimationFrame(loop); };
+  requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
